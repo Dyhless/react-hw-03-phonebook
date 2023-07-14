@@ -54,6 +54,20 @@ export class App extends Component {
     );
   };
 
+  componentDidMount() {
+    console.log('App componentDidMount');
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('App componentDidUpdate');
+
+    if (this.state.contacts !== prevState.contacts) {
+      console.log('Contact list updated');
+
+      localStorage.setItem('contact', JSON.stringify(this.state.contacts));
+    }
+  }
+
   render() {
     const { filter } = this.state;
     const filteredContacts = this.getFilteredContacts();
